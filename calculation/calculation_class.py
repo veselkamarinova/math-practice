@@ -6,7 +6,7 @@ class Calculation(ABC):
     def __init__(self, term_min: int, term_max: int):
         self.term_min = term_min
         self.term_max = term_max
-        if self.term_min > 0 or self.term_max < 0:
+        if self.term_min < 0 or self.term_max < 0:
             raise ValueError("Only positive integers are allowed.")
         if self.term_max <= self.term_min:
             raise ValueError("term_max must be larger than term_min")
