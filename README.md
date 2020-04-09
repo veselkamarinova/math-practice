@@ -1,2 +1,2 @@
-# math-practice
-simple script to help kids practice mathematics
+# Math practice
+simple script that lets kids practice mathematics during the coronavirus lockdown.
