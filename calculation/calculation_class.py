@@ -19,7 +19,7 @@ class Calculation(ABC):
     def get_calculation(self):
         pass
 
-    def get_random_term(self, min_range, max_range):
+    def get_random_term(self):
         min_range = self.term_min
-        max_range = self.term_max
+        max_range = self.term_max + 1
         return random.randrange(min_range, max_range)
