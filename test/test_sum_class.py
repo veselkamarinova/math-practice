@@ -39,6 +39,21 @@ class TestsSummation(unittest.TestCase):
         if a > b:
             self.fail(str(a) + " can not be greater than " + str(b))
 
+    def test_get_calculation(self):
+        for i in range(100):
+            calculation = self.summation.get_calculation()
+
+            # Check that a tuple is returned with the first value a string and the second an integer.
+            self.assertTrue(isinstance(calculation, tuple))
+            sum = calculation[0]
+            result = calculation[1]
+            self.assertTrue(isinstance(sum, str))
+            self.assertTrue(isinstance(result, int))
+
+            # Check that the sum and the result are correct.
+            sum_result = eval(sum)
+            self.assertEqual(result, sum_result)
+
 
 if __name__ == "__main__":
     unittest.main()
