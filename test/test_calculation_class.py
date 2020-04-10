@@ -1,5 +1,5 @@
 from calculation.calculation_class import Calculation
-from calculation.sum_class import Summation
+from calculation.summation import Summation
 
 import unittest
 
@@ -40,9 +40,19 @@ class TestsCalculationClass(unittest.TestCase):
             Summation(1, "five")
         self.assertTrue(str(cm.exception), "Only positive integers are allowed.")
 
+    def test_that_invalid_types_as_string_raises_error_using_term_min(self):
+        with self.assertRaises(Exception) as cm:
+            Summation("five", 5)
+        self.assertTrue(str(cm.exception), "Only positive integers are allowed.")
+
     def test_that_invalid_types_as_float_number_raises_error(self):
         with self.assertRaises(TypeError) as cm:
             Summation(1, 5.5)
+        self.assertTrue(str(cm.exception), "Only positive integers are allowed.")
+
+    def test_that_invalid_types_as_float_number_raises_error_using_term_min(self):
+        with self.assertRaises(TypeError) as cm:
+            Summation(5.5, 6)
         self.assertTrue(str(cm.exception), "Only positive integers are allowed.")
 
 

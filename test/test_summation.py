@@ -1,4 +1,4 @@
-from calculation.sum_class import Summation
+from calculation.summation import Summation
 import unittest
 
 
