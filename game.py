@@ -1,5 +1,4 @@
 from calculation.summation import Summation
-from calculation.calculation_class import Calculation
 
 
 class Game:
@@ -18,14 +17,14 @@ class Game:
             print(f"На колко е равно:\n {question}")
             user_answer = input("= ")
             while True:
-                if user_answer == str(answer):
-                    print(f"Поздравления, твоят отговор {answer} е правилен.")
-                    correct_count += 1
-                    break
-                elif user_answer != str(answer):
+                if user_answer != str(answer):
                     print(f"Отговорът ти не е правилен. Опитай пак! На колко е равно:\n {question} ?")
                     user_answer = input("= ")
                     incorrect_count += 1
+                else:
+                    print(f"Поздравления, твоят отговор {answer} е правилен.")
+                    correct_count += 1
+                    break
 
         print(f"Браво, {username} ти завърши математическата игра!")
         if correct_count > incorrect_count:
