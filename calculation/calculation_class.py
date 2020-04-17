@@ -19,6 +19,7 @@ class Calculation(ABC):
     def get_calculation(self):
         pass
 
+    # Returns a random number between min_range and max_range (inclusive).
     def get_random_term(self):
         min_range = self.term_min
         max_range = self.term_max + 1
