@@ -27,7 +27,7 @@ class Game:
                     correct_count += 1
                     break
 
-        print(f"Браво, {username} ти завърши математическата игра!")
+        print(f"Браво, {username} ти завърши математическата куиз!")
         if correct_count > incorrect_count:
             if incorrect_count == 0:
                 print(

@@ -21,9 +21,9 @@ class GameClass(unittest.TestCase):
 
         self.assertEmpty(expected_class_names)
 
-    def assertEmpty(self, array):
-        if len(array) != 0:
-            self.fail("The array is expected to be empty but it was not.")
+    def assertEmpty(self, list_classes):
+        if len(list_classes) != 0:
+            self.fail("The list is expected to be empty but it was not.")
 
 
 if __name__ == "__main__":
