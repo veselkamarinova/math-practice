@@ -54,9 +54,9 @@ class Game:
     def get_calculation_class():
         number = random.randint(1, 6)
         if number % 2 == 0:
-            return Summation(1, 10)
+            return Summation(1, 20, 20)
         else:
-            return Subtraction(1, 20)
+            return Subtraction(1, 20, 20)
 
 
 if __name__ == "__main__":

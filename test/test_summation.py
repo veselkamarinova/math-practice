@@ -1,11 +1,12 @@
 from calculation.summation import Summation
+from calculation.calculation_class import Calculation
 import unittest
 
 
 class TestsSummation(unittest.TestCase):
 
     def setUp(self):
-        self.summation = Summation(2, 10)
+        self.summation = Summation(2, 10, 20)
 
     def test_get_random_term(self):
         lowest = None
@@ -40,19 +41,24 @@ class TestsSummation(unittest.TestCase):
             self.fail(str(a) + " can not be greater than " + str(b))
 
     def test_get_calculation(self):
-        for i in range(100):
+        max_result_found = 0
+        for i in range(1000):
             calculation = self.summation.get_calculation()
-
             # Check that a tuple is returned with the first value a string and the second an integer.
             self.assertTrue(isinstance(calculation, tuple))
             sum = calculation[0]
             result = calculation[1]
+            if result > max_result_found:
+                max_result_found = result
             self.assertTrue(isinstance(sum, str))
             self.assertTrue(isinstance(result, int))
 
             # Check that the sum and the result are correct.
             sum_result = eval(sum)
             self.assertEqual(result, sum_result)
+
+        # Check that the result returned is never greater than the result_max.
+        self.assertEqual(max_result_found, 20)
 
 
 if __name__ == "__main__":
