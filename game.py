@@ -1,6 +1,9 @@
 from calculation.summation import Summation
 from calculation.subtraction import Subtraction
 import random
+import csv
+from datetime import date
+import os.path
 
 
 class Game:
@@ -10,8 +13,9 @@ class Game:
         print(f"Добре да се забавляваме, {username}. Нека да започнем играта!")
         incorrect_count = 0
         correct_count = 0
-
+        total_answer = 0
         for i in range(1, 11):
+            total_answer += i
             calculation = Game.get_calculation_class()
             print(f"Въпрос номер {i}:")
             (question, answer) = calculation.get_calculation()
@@ -34,21 +38,22 @@ class Game:
                     f"Отлична работа, всички отговори са правилни! Твоята награда е 30 минути бонус игра на телефона!")
             elif incorrect_count < 3:
                 print(
-                    f'Броят на неверните отговорие е: {incorrect_count}! '
+                    f'Броят на неверните отговорие е: {incorrect_count} от общо {total_answer} решени задачи!'
                     f'Получаваш награда от 20 минути бонус игра на телефона!'
                 )
-            elif 3 == incorrect_count < 5:
+            elif incorrect_count <= 4:
                 print(
-                    f"Броят на неверните отговорие е: {incorrect_count}!"
+                    f"Броят на неверните отговорие е: {incorrect_count} от общо {total_answer} решени задачи!"
                     f" Твоята поущтрителна наградата е 15 минути бонус игра на телефона!"
                 )
             else:
                 print(
-                    f"Имаш {incorrect_count} грешни отговора. Трябва да решаваш повече задачи, за да получиш награда!")
+                    f"Имаш {incorrect_count} грешни отговора от общо {total_answer} решени задачи! Трябва да решаваш повече задачи, за да получиш награда!")
         else:
             print(
-                f"От 10 задачи ти имаш {incorrect_count} грешни отговора."
+                f"От {total_answer} задачи ти имаш {incorrect_count} грешни отговора."
                 f" Трябва да решаваш повече задачи, за да получиш награда!")
+        Game.save_stats(username, correct_count, incorrect_count)
 
     @staticmethod
     def get_calculation_class():
@@ -57,6 +62,18 @@ class Game:
             return Summation(1, 10)
         else:
             return Subtraction(1, 20)
+
+    @staticmethod
+    def save_stats(username: str, correct_count: int, incorrect_count: int):
+        today = date.today()
+        content = [today, username, correct_count, incorrect_count]
+        file_exists = os.path.isfile('statistics.csv')
+        with open('statistics.csv', 'a', newline='\n') as csvfile:
+            headers = ["Day", "Username", "Correct count", "Incorrect count"]
+            writer = csv.writer(csvfile)
+            if not file_exists:
+                writer.writerow(headers)
+            writer.writerow(content)
 
 
 if __name__ == "__main__":
