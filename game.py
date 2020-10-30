@@ -14,7 +14,7 @@ class Game:
         incorrect_count = 0
 
         answer_count = 0
-        for answer_count in range(1, 21):
+        for answer_count in range(1, 11):
             calculation = Game.get_calculation_class()
             print(f"Въпрос номер {answer_count}:")
             (question, answer) = calculation.get_calculation()
@@ -33,15 +33,15 @@ class Game:
             if incorrect_count == 0:
                 print(
                     f"Отлична работа, всички отговори са правилни! Твоята награда е 20 минути бонус игра на телефона!")
-            elif incorrect_count < 3:
+            elif incorrect_count < 2:
                 print(
                     f'Броят на неверните отговорие е: {incorrect_count} от общо {answer_count} решени задачи!'
                     f'Получаваш награда от 10 минути бонус игра на телефона!'
                 )
-            elif incorrect_count <= 4:
+            elif incorrect_count <= 3:
                 print(
                     f"Броят на неверните отговорие е: {incorrect_count} от общо {answer_count} решени задачи!"
-                    f" Твоята поущтрителна наградата е 5 минути бонус игра на телефона!"
+                    f" Опитай да решиш задачите отново!"
                 )
             else:
                 print(
